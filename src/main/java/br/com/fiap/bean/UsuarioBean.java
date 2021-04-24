@@ -2,6 +2,7 @@ package br.com.fiap.bean;
 
 import javax.faces.bean.ManagedBean;
 
+import br.com.fiap.dao.UsuarioDAO;
 import br.com.fiap.model.Usuario;
 
 @ManagedBean
@@ -18,7 +19,7 @@ public class UsuarioBean {
 	}
 	
 	public void saveUser() {
-		
+		new UsuarioDAO().saveUser(this.user);
 		System.out.println("Criando Usuario ....."+ this.user);
 	}
 }
