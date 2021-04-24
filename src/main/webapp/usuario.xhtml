@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="content">
+	<p:messages><p:autoUpdate/> </p:messages>
+	<h:form>
+		
+		<p:card class = "form-card">
+		    <f:facet name="title">
+		        User Created Profile
+		    </f:facet>
+				
+		<div class="ui-fluid p-formgrid p-grid">
+		    <div class="p-field p-col-12 p-md-6">
+		        <h:outputLabel  for="name" value="Name completed"/>
+		        <p:inputText id="name" value="#{usuarioBean.user.nome}" required="true" requiredMessage="Nome do Usuario deve ser Obrigatorio"/>
+		    </div>
+		    <!-- 
+		    CALENDARIO DATA
+		     <div class="p-field p-col-12 p-md-4">
+	                <p:outputLabel for="basic" value="Basic"/>
+	                <p:datePicker id="basic" value="#{calendarView.date}" />
+	            </div>
+	 		-->
+		    <div class="p-field p-col-12 p-md-3">
+		    	<h:outputLabel for="password" value="Password User"/>
+		         <p:password id="password" value="#{usuarioBean.user.senha}" feedback="true" required="true"  validatorMessage="Senha deve ser Obrigatoria">
+		         	<f:validateLength minimum="8"  maximum="30"/>
+		         </p:password>
+		    </div>
+		    <div class="p-field p-col-12 p-md-6">
+		        <h:outputLabel for="email" value="Email"/>
+		        <p:inputText id="email"  value="#{usuarioBean.user.email}"  required="true" validatorMessage="Email deve contar um @">>
+		        	<f:validateRegex pattern="[@]"></f:validateRegex>
+		        </p:inputText>
+		    </div>
+		  
+		</div>
+		
+
+		    <f:facet name="footer">
+		        <p:commandButton icon="pi pi-check" value="Save" action="#{userBeans.saveUser}"/>
+		        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
+		    </f:facet>
+	</p:card>
+		</h:form>
+		
+	</ui:define>
+	</ui:composition>
+
+</html>
