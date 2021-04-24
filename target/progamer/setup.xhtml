@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="content">
+	
+	<p:card class ="form-card">
+	    <f:facet name="title">
+	    	New Setup
+	    </f:facet>
+	    
+		<div class="p-field p-grid">
+	   		 <label for="nome" class="p-col-fixed" style="width:100px">Name</label>
+		    <div class="p-col">
+		        <p:inputText id="name" type="text" />
+		    </div>
+		</div>
+		<div class="p-field p-grid">
+	    	<label for="dedsc" class="p-col-fixed" style="width:100px">Description</label>
+		    <div class="p-col">
+		        <p:inputTextarea id="desc" type="text" />
+		    </div>
+		</div>
+		
+		<div class="p-field p-grid">
+	    	<label for="price" class="p-col-fixed" style="width:100px">Price</label>
+		    <div class="p-col">
+		        <p:inputText id="price" type="text" />
+		    </div>
+		</div>
+	    
+	    <f:facet name="footer">
+	        <p:commandButton icon="pi pi-check" value="Save"/>
+	        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
+	    </f:facet>
+</p:card>	
+	
+	</ui:define>
+</ui:composition>
+
+</html>
