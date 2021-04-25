@@ -57,6 +57,8 @@ body {
     color: #256029;
 }
 
+
+
 .pi {
     font-family: 'primeicons';
     font-style: normal;
@@ -91,7 +93,9 @@ body {
     margin: 0 0 1rem 0;
 }
 
-.setup-grid-item-bottom {
+.setup-grid-item .setup-grid-item-top, .setup-grid-item-bottom {
+	margin-right: 8px;
+	padding: 10px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
@@ -106,6 +110,7 @@ body {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     margin: 2rem 0;
 }
+
 
 
 /*
@@ -156,9 +161,20 @@ Especificações de estilos da pagina de listagem dos usuarios
     margin-right: 2rem;
 }
 
-.user-badge{
-    background: #C8E6C9;
-    color: #256029;
+
+
+.user-badge-grid {
+	background: #35cf17;
+    color:#ffffff;
+    border-radius: 20px;
+    text-align: center;
+    padding: 5px;
+   
+}
+
+.user-category-icon {
+    vertical-align: middle;
+    margin-right: .5rem;
 }
 
 .pi {
@@ -175,9 +191,24 @@ Especificações de estilos da pagina de listagem dos usuarios
     box-sizing: border-box;
 }
 
-.user-category {
+.user-status {
     font-weight: 600;
     vertical-align: middle;
+     padding: 1em;
+}
+
+.user-status {
+    border-radius: 2px;
+    padding: .25em .5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+}
+
+.user-status{
+    background: #a80eb0;
+    color: #ffffff;
 }
 
 
@@ -192,7 +223,9 @@ Especificações de estilos da pagina de listagem dos usuarios
 
 
 
-.user-grid-item-bottom {
+.user-grid-item .user-grid-item-top, .user-grid-item-bottom {
+	margin-right: 8px;
+	padding: 10px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
@@ -202,14 +235,20 @@ Especificações de estilos da pagina de listagem dos usuarios
 }
 
 
+
 .user-grid-item img {
-    width: 75%;
+    width: 45%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     margin: 2rem 0;
 }
 
 
-
+.user-badge{
+    background: #35cf17;
+    color:#ffffff;
+    border-radius: 20px;
+    text-align: center;
+}
 
 
 
