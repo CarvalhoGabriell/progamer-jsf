@@ -21,13 +21,15 @@
 		        <h:outputLabel  for="name" value="Name completed"/>
 		        <p:inputText id="name" value="#{usuarioBean.user.nome}" required="true" requiredMessage="Nome do Usuario deve ser Obrigatorio"/>
 		    </div>
-		    <!-- 
-		    CALENDARIO DATA
+		    
+		  <!--CALENDARIO DATA  -->  
 		     <div class="p-field p-col-12 p-md-4">
-	                <p:outputLabel for="basic" value="Basic"/>
-	                <p:datePicker id="basic" value="#{calendarView.date}" />
+	                <p:outputLabel for="dtNasci" value="Data Nascimento"/>
+	                <p:datePicker id="dtNasci" value="#{usuarioBean.user.dtNascimento}" >
+	                	<f:convertDateTime type="date" pattern="dd/MM/yyyy"></f:convertDateTime>
+	                </p:datePicker>
 	            </div>
-	 		-->
+	 		
 		    <div class="p-field p-col-12 p-md-3">
 		    	<h:outputLabel for="password" value="Password User"/>
 		         <p:password id="password" value="#{usuarioBean.user.senha}" feedback="true" required="true"  validatorMessage="Senha deve ser Obrigatoria">
@@ -36,7 +38,7 @@
 		    </div>
 		    <div class="p-field p-col-12 p-md-6">
 		        <h:outputLabel for="email" value="Email"/>
-		        <p:inputText id="email"  value="#{usuarioBean.user.email}"  required="true" validatorMessage="Email deve contar um @">>
+		        <p:inputText id="email"  value="#{usuarioBean.user.email}"  required="true" validatorMessage="Email incorreto">>
 		        	<f:validateRegex pattern="^\w*(\.\w*)?@\w*\.[a-z]+(\.[a-z]+)?$"></f:validateRegex>
 		        </p:inputText>
 		    </div>
