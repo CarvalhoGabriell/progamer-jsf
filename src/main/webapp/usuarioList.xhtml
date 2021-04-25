@@ -23,27 +23,25 @@
                 <div class="user-grid-item card border-1">
                     <div class="user-grid-item-top">
                     
-                     <div>
+                     	<div>
                            <i class="pi pi-id-card user-category-icon"/>
-                           <span class="user-category">Users</span>
-                           
+                           <span class ="user-category">Users Profiles</span>
                        </div>
+                           <span class="user-status">NICE</span>
                     </div>
                     <div class="user-grid-item-content">
-                        <p:graphicImage value="/resources/images/spiderman" library="demo"/>
-                        <div class="user-name">#{user.name}</div>
-                        <div class="user-description">#{user.description}</div>
+                        <p:graphicImage value="/resources/images/programmer.jpg" library="demo"/>
+                        <div class="user-name">#{user.nome}</div>
+                        <div class="user-email">#{user.email}</div>
                   
                     </div>
                     <div class="user-grid-item-bottom">
-                        <h:outputText value="#{user.dtNascimento}" styleClass="user.date">
+                    <span class="user-badge-grid status-user"> Online</span>
+                        <h:outputText value="#{user.dtNascimento.time}" styleClass="user.date">
                             <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
                         </h:outputText>
-                        
-                        <h:outputText value="#{user.email}" styleClass="user.email">
-                        </h:outputText>
                         <p:commandButton type="button"
-                                            value="Detail"
+                                            value="View User"
                                             icon="pi pi-eye">
                         </p:commandButton>
                     </div>
@@ -52,14 +50,15 @@
 
             <p:dataViewListItem>
                 <div class="user-list-item">
-                    <p:graphicImage value="/resources/images/Progammer.jpg"/>
+                    <p:graphicImage value="/resources/images/programmer.jpg"/>
                     <div class="user-list-detail">
-                        <div class="user-name">#{user.name}</div>
+                        <div class="user-name">#{user.nome}</div>
                         <div class="user-email">#{user.email}</div>
                         
                     </div>
-                    <div class="setup-list-action">
-                        <h:outputText value="#{user.dtNascimento}" styleClass="user-date">
+                    <div class="user-list-action">
+                    	<span class="user-badge status-user"> Online</span>
+                        <h:outputText value="#{user.dtNascimento.time}" styleClass="user-date">
                             <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
                         </h:outputText>
                         <p:commandButton type="button"
