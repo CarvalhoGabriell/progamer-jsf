@@ -14,7 +14,7 @@ import br.com.fiap.model.Usuario;
 @RequestScoped
 public class UsuarioBean {
 	
-	private Usuario user;
+	private Usuario user = new Usuario();
 
 	public Usuario getUser() {
 		return user;
