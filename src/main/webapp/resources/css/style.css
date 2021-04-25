@@ -8,3 +8,211 @@ body {
 	width: 25em;
 	margin: 1em auto;
 }
+
+
+.setup-list-item {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.setup-list-detail {
+    flex: 1 1 0;
+    -ms-flex: 1 1 0;
+}
+
+.setup-list-action {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.setup-name {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.setup-description {
+    margin: 0 0 1rem 0;
+}
+
+.setup-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+    align-self: flex-end;
+}
+
+.setup-list-item img {
+    width: 150px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-right: 2rem;
+}
+
+.setup-badge{
+    background: #C8E6C9;
+    color: #256029;
+}
+
+.pi {
+    font-family: 'primeicons';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: inline-block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.setup-category {
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+
+.setup-grid-item.border-1 {
+    border: 1px solid var(--surface-d);
+}
+
+
+.setup-grid-item-content {
+    text-align: center;
+}
+
+
+.setup-grid-item .ui-rating {
+    margin: 0 0 1rem 0;
+}
+
+.setup-grid-item-bottom {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+
+.setup-grid-item img {
+    width: 75%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin: 2rem 0;
+}
+
+
+/*
+Especificações de estilos da pagina de listagem dos usuarios
+*/
+
+
+
+.user-list-item {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.user-list-detail {
+    flex: 1 1 0;
+    -ms-flex: 1 1 0;
+}
+
+.user-list-action {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.user-date {
+    margin: 0 0 1rem 0;
+}
+
+.user-email {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+    align-self: flex-end;
+}
+
+.user-list-item img {
+    width: 150px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-right: 2rem;
+}
+
+.user-badge{
+    background: #C8E6C9;
+    color: #256029;
+}
+
+.pi {
+    font-family: 'primeicons';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    display: inline-block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.user-category {
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+
+.user-grid-item.border-1 {
+    border: 1px solid var(--surface-d);
+}
+
+
+.user-grid-item-content {
+    text-align: center;
+}
+
+
+
+.user-grid-item-bottom {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+
+.user-grid-item img {
+    width: 75%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin: 2rem 0;
+}
+
+
+
+
+
+
+
+
+
