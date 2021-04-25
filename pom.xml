@@ -39,6 +39,16 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>8.0.23</version>
 	</dependency>
+	<dependency>
+      <groupId>javax.enterprise</groupId>
+      <artifactId>cdi-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+	<dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>jsr250-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
     
   </dependencies>
   <dependencyManagement>
@@ -49,6 +59,12 @@
         <version>3.0.3.Final</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>jsr250-api</artifactId>
+        <version>1.0</version>
+        <scope>provided</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
