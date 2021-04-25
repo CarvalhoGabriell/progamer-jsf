@@ -10,7 +10,7 @@
 <ui:composition template="_template.xhtml">
 	<ui:define name="content">
 	
-	<p:messages><p:autoUpdate/> </p:messages>
+	<p:messages id="messages"><p:autoUpdate/> </p:messages>
 	<h:form>
 	<p:card class ="form-card">
 	    <f:facet name="title">
@@ -20,7 +20,9 @@
 		<div class="p-field p-grid">
 	   		 <h:outputLabel for="name" class="p-col-fixed" style="width:100px" value="Name"/>
 		    <div class="p-col">
-		        <p:inputText id="name" value="#{setupBean.setup.name}" required="true" requiredMessage="Campo Nome é Obrigatório"/>
+		        <p:inputText id="name" value="#{setupBean.setup.name}" required="true" requiredMessage="Campo Nome é Obrigatório"> 
+		        	<f:ajax event="blur" render="messages" />
+		        </p:inputText>
 		    </div>
 		</div>
 		<div class="p-field p-grid">
@@ -28,6 +30,7 @@
 		    <div class="p-col">
 		        <p:inputTextarea id="description" value="#{setupBean.setup.description}" validatorMessage="Campo Descrição deve ter entre 10 e 255 caracteres">
 		        	<f:validateLength minimum="10" maximum="255"/>
+		        	<f:ajax event="blur" render="messages"/>
 		        </p:inputTextarea>
 		    </div>
 		</div>
@@ -37,12 +40,15 @@
 		    <div class="p-col">
 		        <p:inputText id="price" value="#{setupBean.setup.price}" converterMessage="Campo Preço deve conter somente Números"> 
 		        	<f:validateDoubleRange  minimum="100"/>
+		        	<f:ajax event="blur" render="messages"/>
 		        </p:inputText>
 		    </div>
 		</div>
 	    
 	    <f:facet name="footer">
-	        <p:commandButton icon="pi pi-check" value="Save" action="#{setupBean.save}"/>
+	        <p:commandButton icon="pi pi-check" value="Save" action="#{setupBean.save}">
+	        	<f:ajax execute="@form" render="messages"/>
+	        </p:commandButton>
 	        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
 	    </f:facet>
 </p:card>	
