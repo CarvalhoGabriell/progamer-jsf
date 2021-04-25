@@ -8,7 +8,7 @@
 
 <ui:composition template="_template.xhtml">
 	<ui:define name="content">
-	<p:messages><p:autoUpdate/> </p:messages>
+	<p:messages id="userMsg"><p:autoUpdate/> </p:messages>
 	<h:form>
 		
 		<p:card class = "form-card">
@@ -18,28 +18,35 @@
 				
 		<div class="ui-fluid p-formgrid p-grid">
 		    <div class="p-field p-col-12 p-md-6">
-		        <h:outputLabel  for="name" value="Name completed"/>
-		        <p:inputText id="name" value="#{usuarioBean.user.nome}" required="true" requiredMessage="Nome do Usuario deve ser Obrigatorio"/>
+		        <h:outputLabel  for="name" value="Full Name"/>
+		        <p:inputText id="name" value="#{usuarioBean.user.nome}" required="true" requiredMessage="Campo Nome Obrigatorio" validatorMessage="Campo Nome deve ter mais de 10 caracteres">
+			   		<f:ajax event="blur" render="userMsg"/>
+			   		<f:validateLength minimum="5" maximum="255"/>
+		        
+		        </p:inputText>
 		    </div>
 		    
 		  <!--CALENDARIO DATA  -->  
 		     <div class="p-field p-col-12 p-md-4">
-	                <p:outputLabel for="dtNasci" value="Data Nascimento"/>
-	                <p:datePicker id="dtNasci" value="#{usuarioBean.user.dtNascimento}" >
+	                <p:outputLabel for="dtNasci" value="Birth Date"/>
+	                <p:datePicker id="dtNasci" value="#{usuarioBean.user.dtNascimento.time}"  required="true" requiredMessage="Data de Nascimento é Obrigatório" validatorMessage="Data esta incorreta">
 	                	<f:convertDateTime type="date" pattern="dd/MM/yyyy"></f:convertDateTime>
+	               		<f:ajax event="blur" render="userMsg"/>
 	                </p:datePicker>
 	            </div>
 	 		
 		    <div class="p-field p-col-12 p-md-3">
 		    	<h:outputLabel for="password" value="Password User"/>
-		         <p:password id="password" value="#{usuarioBean.user.senha}" feedback="true" required="true"  validatorMessage="Senha deve ser Obrigatoria">
-		         	<f:validateLength minimum="8"  maximum="30"/>
+		         <p:password id="password" value="#{usuarioBean.user.senha}" feedback="true" required="true" requiredMessage="Senha deve ser Obrigatória"  validatorMessage="Senha Deve ter 5 a 30 caracteres.">
+		         	<f:validateLength minimum="5"  maximum="30"/>
+		         	<f:ajax event="blur" render="userMsg"/>
 		         </p:password>
 		    </div>
 		    <div class="p-field p-col-12 p-md-6">
-		        <h:outputLabel for="email" value="Email"/>
-		        <p:inputText id="email"  value="#{usuarioBean.user.email}"  required="true" validatorMessage="Email incorreto">>
+		        <h:outputLabel for="email" value="Email Adress"/>
+		        <p:inputText id="email"  value="#{usuarioBean.user.email}"  required="true" requiredMessage="Campo Email é Obrigatório" validatorMessage="Email incorreto">
 		        	<f:validateRegex pattern="^\w*(\.\w*)?@\w*\.[a-z]+(\.[a-z]+)?$"></f:validateRegex>
+		        	<f:ajax event="blur" render="userMsg"/>
 		        </p:inputText>
 		    </div>
 		  
@@ -47,7 +54,9 @@
 		
 
 		    <f:facet name="footer">
-		        <p:commandButton icon="pi pi-check" value="Save" action="#{userBeans.saveUser}"/>
+		        <p:commandButton icon="pi pi-check" value="Create" action="#{usuarioBean.saveUser}">
+		        	<f:ajax execute="@form" render="userMsg"/>
+		        </p:commandButton>
 		        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
 		    </f:facet>
 	</p:card>
