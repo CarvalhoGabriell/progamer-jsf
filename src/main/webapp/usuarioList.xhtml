@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+>
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="content">
+
+		<div class="card user">
+   		 <h:form id="form">
+        <p:dataView var="user" 
+        			value="#{usuarioBean.users}" rows="5" paginator="true"
+                    rowsPerPageTemplate="5,10"
+                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+            <p:dataViewGridItem>
+                <div class="user-grid-item card border-1">
+                    <div class="user-grid-item-top">
+                    
+                     <div>
+                           <i class="pi pi-id-card user-category-icon"/>
+                           <span class="user-category">Users</span>
+                           
+                       </div>
+                    </div>
+                    <div class="user-grid-item-content">
+                        <p:graphicImage value="/resources/images/spiderman" library="demo"/>
+                        <div class="user-name">#{user.name}</div>
+                        <div class="user-description">#{user.description}</div>
+                  
+                    </div>
+                    <div class="user-grid-item-bottom">
+                        <h:outputText value="#{user.dtNascimento}" styleClass="user.date">
+                            <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
+                        </h:outputText>
+                        
+                        <h:outputText value="#{user.email}" styleClass="user.email">
+                        </h:outputText>
+                        <p:commandButton type="button"
+                                            value="Detail"
+                                            icon="pi pi-eye">
+                        </p:commandButton>
+                    </div>
+                </div>
+            </p:dataViewGridItem>
+
+            <p:dataViewListItem>
+                <div class="user-list-item">
+                    <p:graphicImage value="/resources/images/Progammer.jpg"/>
+                    <div class="user-list-detail">
+                        <div class="user-name">#{user.name}</div>
+                        <div class="user-email">#{user.email}</div>
+                        
+                    </div>
+                    <div class="setup-list-action">
+                        <h:outputText value="#{user.dtNascimento}" styleClass="user-date">
+                            <f:convertDateTime pattern="dd/MM/yyyy" type="date"/>
+                        </h:outputText>
+                        <p:commandButton type="button"
+                                         value="Detail"
+                                         icon="pi pi-eye">
+                        </p:commandButton>
+                    </div>
+                </div>
+            </p:dataViewListItem>
+        </p:dataView>
+    </h:form>
+</div>
+		
+		
+		</ui:define>
+</ui:composition>
+
+</html>
