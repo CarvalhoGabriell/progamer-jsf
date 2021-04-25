@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Usuario {
@@ -16,7 +18,9 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
-	private Calendar dtNascimento;
+	
+	@Temporal(TemporalType.DATE)
+	private Calendar dtNascimento = Calendar.getInstance();
 	
 	public Usuario() {
 		super();
