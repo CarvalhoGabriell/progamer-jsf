@@ -34,8 +34,7 @@ public class Usuario {
 		this.dtNascimento = dtNascimento;
 	}
 
-
-
+	
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", dtNascimento="
@@ -88,6 +87,13 @@ public class Usuario {
 		this.dtNascimento = dtNascimento;
 	}
 	
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 }
