@@ -26,5 +26,30 @@ public class SetupDAO {
 		TypedQuery<Setup> query = manager.createQuery(strSQL, Setup.class);
 		return query.getResultList();
 	}
+
+	public Setup findById(Long id) {
+		
+		return manager.find(Setup.class, id);
+	}
+
+	public void updateSetup(Setup setup) {
+		manager.getTransaction().begin();
+		manager.merge(setup);
+		manager.flush();
+		manager.getTransaction().commit();
+		manager.close();
+		
+	}
+	
+	
+	public void deleteySetup(Long id) {
+		manager.getTransaction().begin();
+		Setup setup = manager.find(Setup.class, id);
+		manager.remove(setup);
+		System.out.println("Deletando Setup ID "+setup.getId()+" --- NOME: "+setup.getName());
+		
+		manager.getTransaction().commit();
+		manager.close();
+	}
 	
 }
