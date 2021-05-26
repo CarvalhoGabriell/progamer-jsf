@@ -116,9 +116,9 @@ public class UserEndPoint {
 	
 	@DELETE
 	@Path("{id}")
-	public Response deleteUser(@PathParam("id") Long id) {
+	public Response deleteUser(@PathParam("id") Long id, Usuario user) {
 		
-		Usuario user = dao.findById(id);
+		user = dao.findById(id);
 		if (user == null) {
 			
 			return Response
@@ -127,7 +127,7 @@ public class UserEndPoint {
 		}
 		
 		try {
-			dao.delete(id);
+			dao.delete(user);
 		} catch (Exception e) {
 			
 			return Response.status(
