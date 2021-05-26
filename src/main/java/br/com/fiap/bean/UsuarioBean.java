@@ -15,6 +15,7 @@ import br.com.fiap.model.Usuario;
 public class UsuarioBean {
 	
 	private Usuario user = new Usuario();
+	FacesContext context = FacesContext.getCurrentInstance();
 
 	public Usuario getUser() {
 		return user;
@@ -25,9 +26,9 @@ public class UsuarioBean {
 	}
 	
 	public void saveUser() {
-		new UsuarioDAO().saveUser(this.user);
+		new UsuarioDAO().saveUser(user);
 		System.out.println("Criando Usuario ....."+ this.user);
-		FacesContext.getCurrentInstance().addMessage(null,
+		context.addMessage(null,
 				new FacesMessage("Usuário Cadastrado com sucesso!"));
 	}
 	
@@ -35,4 +36,34 @@ public class UsuarioBean {
 	public List<Usuario> getUsers() {
 		return new UsuarioDAO().getAllUsers();
 	}
+	
+	public String  login() {
+		
+		boolean userExist = new UsuarioDAO().verifyExist(user);
+		if (userExist) {
+			context.getExternalContext().getSessionMap().put("user", user);
+			return "index?faces-redirect=true";
+		}
+		
+		context
+			.getExternalContext()
+			.getFlash()
+			.setKeepMessages(true);
+		context
+		.addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login Inválido!", ""));
+		
+		return "login?faces-redirect=true";
+	}
+	
+	public String logout() {
+		context.getExternalContext().getSessionMap().remove("user");
+
+		return "login?faces-redirect=true";
+	}
+	
 }
+/*
+ * tonico@eu.com
+ * 12345
+ */

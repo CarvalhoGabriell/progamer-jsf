@@ -27,7 +27,7 @@ public class SetupBean {
 
 
 	public void save() {
-		new SetupDAO().save(this.setup);
+		new SetupDAO().save(setup);
 		System.out.println("Cadastrando e Salvando..."+ this.setup);
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Setup Cadastrado com Sucesso!"));
