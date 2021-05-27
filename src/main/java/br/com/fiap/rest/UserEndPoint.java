@@ -84,7 +84,6 @@ public class UserEndPoint {
 		if (user == null) {
 			return Response
 					.status(Response.Status.BAD_REQUEST)
-					.entity(user)
 					.build();
 			
 		}
@@ -116,9 +115,9 @@ public class UserEndPoint {
 	
 	@DELETE
 	@Path("{id}")
-	public Response deleteUser(@PathParam("id") Long id, Usuario user) {
+	public Response deleteUser(@PathParam("id") Long id) {
 		
-		user = dao.findById(id);
+		Usuario user = dao.findById(id);
 		if (user == null) {
 			
 			return Response

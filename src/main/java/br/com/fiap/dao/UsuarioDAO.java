@@ -40,12 +40,15 @@ public class UsuarioDAO {
 		manager.close();
 	}
 	
-	public void delete(Usuario user) {
+	public void delete( Usuario user) {
 		EntityManager manager= EntityManagerFacede.getEntityManager();
+		
 		manager.getTransaction().begin();
-		user = manager.find(Usuario.class,user.getId());
+		user = manager.find(Usuario.class, user.getId());
 		manager.remove(user);
 		manager.getTransaction().commit();
+		
+		
 		System.out.println("Deletando Usuario ID "+user.getId()+" --- NOME: "+user.getNome()+" EMAIL: "+user.getEmail());
 		manager.close();
 	}

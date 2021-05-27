@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Setup {
@@ -17,7 +18,16 @@ public class Setup {
 	private String description;
 	private BigDecimal price;
 	
+	//@ManyToOne
+	//private Usuario user;
 
+	
+//	public Usuario getUser() {
+//		return user;
+//	}
+//	public void setUser(Usuario user) {
+//		this.user = user;
+//	}
 	public Setup() {
 		super();
 	}
