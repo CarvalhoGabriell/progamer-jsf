@@ -85,8 +85,7 @@ public class SetupEndPoint {
 		}
 		
 		setup.setId(id);
-		setup = dao.findById(id);
-		if (setup == null) {
+		if (dao.findById(id) == null) {
 			return Response
 					.status(Response.Status.NOT_FOUND)
 					.build();
@@ -109,8 +108,8 @@ public class SetupEndPoint {
 	
 	@DELETE
 	@Path("{id}")
-	public Response destroy(@PathParam("id")Long id) {
-		Setup setup = dao.findById(id);
+	public Response destroy(@PathParam("id")Long id, Setup setup) {
+		setup = dao.findById(id);
 		if (setup == null) {
 			
 			return Response
@@ -119,7 +118,7 @@ public class SetupEndPoint {
 		}
 		
 		try {
-			dao.deleteySetup(id);
+			dao.deleteSetup(setup);
 		} catch (Exception e) {
 			
 			return Response.status(

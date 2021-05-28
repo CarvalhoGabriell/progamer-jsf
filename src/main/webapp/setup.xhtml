@@ -6,7 +6,7 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
-
+	
 <ui:composition template="_template.xhtml">
 	<ui:define name="content">
 	
@@ -51,8 +51,21 @@
 	        </p:commandButton>
 	        <p:commandButton icon="pi pi-times" value="Cancel" styleClass="ui-button-secondary" style="margin-left: .5em"/>
 	    </f:facet>
-</p:card>	
+</p:card>
+
+	<p:dataTable  value = "#{setupBean.allSetups}" var= "setup" >
+
+            <p:column  headerText = "Nome">
+                <h:outputText  value = "#{setup.name}"/>
+            </p:column >
+            <p:column  headerText = "Price" >
+                <h:outputText  value = "#{setup.price}"/>
+            </p:column >
+        </p:dataTable >
+	
 </h:form>
+	
+	
 	
 	</ui:define>
 </ui:composition>
