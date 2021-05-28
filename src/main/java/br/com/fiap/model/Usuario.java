@@ -22,27 +22,27 @@ public class Usuario {
 	private String email;
 	private String senha;
 	
-//	@OneToMany(mappedBy = "user")
-//	private List<Setup> setups;
-//	
-//	public void addSetups(Setup setup) {
-//		
-//		if (setups == null) {
-//			
-//			setups = new ArrayList<Setup>();
-//		}
-//		setups.add(setup);
-//		setup.setUser(this);
-//	}
+	@OneToMany(mappedBy = "user")
+	private List<Setup> setups;
+	
+	public void addSetups(Setup setup) {
+		
+		if (setups == null) {
+			
+			setups = new ArrayList<Setup>();
+		}
+		setups.add(setup);
+		setup.setUser(this);
+	}
 	
 	
-//	public List<Setup> getSetups() {
-//		return setups;
-//	}
-//	
-//	public void setSetups(List<Setup> setups) {
-//		this.setups = setups;
-//	}
+	public List<Setup> getSetups() {
+		return setups;
+	}
+	
+	public void setSetups(List<Setup> setups) {
+		this.setups = setups;
+	}
 	
 	@Temporal(TemporalType.DATE)
 	private Calendar dtNascimento = Calendar.getInstance();
