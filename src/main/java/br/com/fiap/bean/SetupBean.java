@@ -9,13 +9,23 @@ import javax.inject.Named;
 
 import br.com.fiap.dao.SetupDAO;
 import br.com.fiap.model.Setup;
+import br.com.fiap.model.Usuario;
 
 @Named
 @RequestScoped
 public class SetupBean {
 	
 	private Setup setup = new Setup();
+	private Usuario usuario = new Usuario();
 	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public Setup getSetup() {
 		return setup;
@@ -33,8 +43,12 @@ public class SetupBean {
 				new FacesMessage("Setup Cadastrado com Sucesso!"));
 	}
 	
-	
 	public List<Setup> getSetups() {
 		return new SetupDAO().getAll();
 	}
+	
+	public List<Setup> getallSetups() {
+		return new SetupDAO().getOne(usuario);
+	}
+	
 }
