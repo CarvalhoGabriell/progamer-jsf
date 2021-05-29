@@ -31,10 +31,9 @@ public class SetupDAO {
 	public List<Setup> getOne(Usuario user) {
 		EntityManager manager= EntityManagerFacede.getEntityManager();
 
-		String strSQL = "select s from Setup s where ID_LOGIN_USER =: id";
-		System.out.println(strSQL);
+		String strSQL = "select s from Setup s where ID_LOGIN_USER = :id";
 		TypedQuery<Setup> query = manager.createQuery(strSQL, Setup.class);
-		
+		System.out.println(user.getId());
 		query.setParameter("id", user.getId());
 		return query.getResultList();
 	}
@@ -57,9 +56,9 @@ public class SetupDAO {
 	}
 	
 	
-	public void deleteSetup(Setup setup) {
+	public void deleteSetup(Long id) {
         EntityManager manager= EntityManagerFacede.getEntityManager();
-        
+        Setup setup = manager.find(Setup.class, id);
         manager.getTransaction().begin();
         setup = manager.merge(setup);
         manager.remove(setup);

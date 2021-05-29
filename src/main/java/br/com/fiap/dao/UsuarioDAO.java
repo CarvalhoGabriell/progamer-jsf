@@ -40,32 +40,33 @@ public class UsuarioDAO {
 		manager.close();
 	}
 	
-	public void delete( Usuario user) {
+	public void delete(Long id) {
 		EntityManager manager= EntityManagerFacede.getEntityManager();
-		
+		Usuario user = manager.find(Usuario.class, id);
 		manager.getTransaction().begin();
-		user = manager.find(Usuario.class, user.getId());
+		user = manager.merge(user);
 		manager.remove(user);
-		manager.getTransaction().commit();
-		
-		
+		manager.flush();
 		System.out.println("Deletando Usuario ID "+user.getId()+" --- NOME: "+user.getNome()+" EMAIL: "+user.getEmail());
+		
+		manager.getTransaction().commit();
 		manager.close();
 	}
 
-	public boolean verifyExist(Usuario usuario) {
+	public Usuario verifyExist(Usuario usuario) {
+		
 		EntityManager manager= EntityManagerFacede.getEntityManager();
 		
-		TypedQuery<Usuario> query = manager.createQuery("SELECT u FROM Usuario u WHERE u.email =: email AND u.senha =: senha", 
+		TypedQuery<Usuario> query = manager.createQuery("SELECT u FROM Usuario u WHERE u.email =:email AND u.senha =:senha", 
 				Usuario.class);
 		query.setParameter("email", usuario.getEmail());
 		query.setParameter("senha", usuario.getSenha());
 		try {
-			query.getSingleResult();
+			usuario = query.getSingleResult();
 		} catch (NoResultException e) {
 			
-			return false;
+			return null;
 		}
-		return true;
+		return usuario;
 	}
 }
