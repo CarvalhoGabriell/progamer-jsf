@@ -16,16 +16,7 @@ import br.com.fiap.model.Usuario;
 public class SetupBean {
 	
 	private Setup setup = new Setup();
-	private Usuario usuario = new Usuario();
 	
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
 	public Setup getSetup() {
 		return setup;
@@ -37,8 +28,10 @@ public class SetupBean {
 
 
 	public void save() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		Usuario user = (Usuario) context.getExternalContext().getSessionMap().get("user");
+		setup.setUser(user);
 		new SetupDAO().save(setup);
-		System.out.println("Cadastrando e Salvando..."+ this.setup);
 		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage("Setup Cadastrado com Sucesso!"));
 	}
@@ -48,7 +41,9 @@ public class SetupBean {
 	}
 	
 	public List<Setup> getallSetups() {
-		return new SetupDAO().getOne(usuario);
+		FacesContext context = FacesContext.getCurrentInstance();
+		Usuario user = (Usuario) context.getExternalContext().getSessionMap().get("user");
+		return new SetupDAO().getOne(user);
 	}
 	
 }

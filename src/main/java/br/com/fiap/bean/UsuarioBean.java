@@ -39,8 +39,8 @@ public class UsuarioBean {
 	
 	public String  login() {
 		
-		boolean userExist = new UsuarioDAO().verifyExist(user);
-		if (userExist) {
+		user = new UsuarioDAO().verifyExist(user);
+		if (user != null) {
 			context.getExternalContext().getSessionMap().put("user", user);
 			return "index?faces-redirect=true";
 		}
