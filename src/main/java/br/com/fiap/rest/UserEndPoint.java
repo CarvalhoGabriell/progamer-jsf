@@ -84,12 +84,12 @@ public class UserEndPoint {
 		if (user == null) {
 			return Response
 					.status(Response.Status.BAD_REQUEST)
+					.entity(user)
 					.build();
 			
 		}
 		user.setId(id);		
-		user = dao.findById(id);
-		if (user == null) {
+		if (dao.findById(id) == null) {
 			
 			return Response
 					.status(Response.Status.NOT_FOUND)
@@ -115,9 +115,8 @@ public class UserEndPoint {
 	
 	@DELETE
 	@Path("{id}")
-	public Response deleteUser(@PathParam("id") Long id) {
-		
-		Usuario user = dao.findById(id);
+	public Response deleteUser(@PathParam("id") Long id,Usuario user) {
+		user = dao.findById(id);
 		if (user == null) {
 			
 			return Response
@@ -126,7 +125,7 @@ public class UserEndPoint {
 		}
 		
 		try {
-			dao.delete(user);
+			dao.delete(id);
 		} catch (Exception e) {
 			
 			return Response.status(
@@ -139,7 +138,6 @@ public class UserEndPoint {
 				.status(Response.Status.OK)
 				.entity(user)
 				.build();
-		
 		
 	}
 }

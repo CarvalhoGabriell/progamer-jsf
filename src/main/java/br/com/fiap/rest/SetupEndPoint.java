@@ -118,7 +118,7 @@ public class SetupEndPoint {
 		}
 		
 		try {
-			dao.deleteSetup(setup);
+			dao.deleteSetup(id);
 		} catch (Exception e) {
 			
 			return Response.status(
