@@ -1,0 +1,57 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM 'H/2 * * * *'
+    }
+	stages {
+		stage('Checkout') {
+			steps {
+				/* colocar os jobs do estágio de Checkout aqui */
+				git branch: 'main', url: 'https://github.com/CarvalhoGabriell/progamer-jsf.git'
+			
+    
+			}
+		}
+		stage('Build') {
+		    steps {
+		        withSonarQubeEnv('SonarQube') {
+		            sh '/opt/maven/bin/mvn clean package sonar:sonar'
+		        }
+		    }
+		}
+		stage('Install') {
+		    steps {
+		        sh '/opt/maven/bin/mvn install'
+		    }
+		}
+		stage('Test') {
+		    steps {
+		        sh '/opt/maven/bin/mvn test'
+		    }
+		}
+		stage('Aceite') {
+            steps {
+                echo 'Espere o aceite de usuário'
+                input(message: 'Mandar para produção?', ok: 'Sim')
+            }
+        }
+        stage('Produção') {
+            steps {
+                echo 'Rodando'
+            }
+        }
+		
+		
+	}
+	    
+	
+}
+stage("Quality Gate") { 
+    def qualityGate = waitForQualityGate() 
+      if (qualityGate.status != 'OK') {
+        error "O código não está de acordo com as regras do Sonar: ${qualityGate.status}"
+      }
+      else {
+          echo "Código está de acordo com as regras do Sonar."
+      }
+}
