@@ -3,33 +3,40 @@ pipeline {
     triggers {
         pollSCM 'H/2 * * * *'
     }
-	stages {
-		stage('Checkout') {
-			steps {
-				/* colocar os jobs do estágio de Checkout aqui */
-				git branch: 'main', url: 'https://github.com/CarvalhoGabriell/progamer-jsf.git'
-			
-    
-			}
-		}
-		stage('Build') {
-		    steps {
-		        withSonarQubeEnv('SonarQube') {
-		            sh '/opt/maven/bin/mvn clean package sonar:sonar'
-		        }
-		    }
-		}
-		stage('Install') {
-		    steps {
-		        sh '/opt/maven/bin/mvn install'
-		    }
-		}
-		stage('Test') {
-		    steps {
-		        sh '/opt/maven/bin/mvn test'
-		    }
-		}
-		stage('Aceite') {
+    stages {
+        stage('Código git') {
+            steps {
+                echo 'Clonando...'
+                git branch: 'main', url: 'https://github.com/CarvalhoGabriell/progamer-jsf.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    echo 'Build...'
+                    sh '/opt/maven/bin/mvn clean package sonar:sonar'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Teste...'
+                sh '/opt/maven/bin/mvn test'
+            }
+        }
+        stage('Install') {
+            steps {
+                echo 'Instalando...'
+                sh '/opt/maven/bin/mvn install'
+            }
+        }
+        stage('Compilação') {
+            steps{
+                echo 'Compilando...'
+                sh "/opt/maven/bin/mvn compiler:compile"
+            }
+        }
+        stage('Aceite') {
             steps {
                 echo 'Espere o aceite de usuário'
                 input(message: 'Mandar para produção?', ok: 'Sim')
@@ -40,13 +47,21 @@ pipeline {
                 echo 'Rodando'
             }
         }
-		
-		
-	}
-	    
-	
+        stage('Jboss') {
+            steps{
+                //echo 'Deploy...'
+                sh "/opt/maven/bin/mvn dependency:tree"
+        }
+    }   
+        stage('Deploy') {
+            steps{
+                echo 'Deploy...'
+                sh "/opt/maven/bin/mvn deploy"
+        }
+    }
+    }
 }
-stage("Quality Gate") { 
+    stage("Quality Gate") { 
     def qualityGate = waitForQualityGate() 
       if (qualityGate.status != 'OK') {
         error "O código não está de acordo com as regras do Sonar: ${qualityGate.status}"
