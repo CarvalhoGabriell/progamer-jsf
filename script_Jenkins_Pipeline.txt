@@ -14,32 +14,56 @@ pipeline {
             steps {
                 withSonarQubeEnv('SonarQube') {
                     echo 'Build...'
-                    sh '/opt/maven/bin/mvn clean package sonar:sonar'
+                    sh '/opt/maven/bin/mvn sonar:sonar'
                 }
             }
         }
-        stage('Test') {
+        stage('Compilação') {
+                    steps{
+                echo 'Compilando...'
+                sh "/opt/maven/bin/mvn compiler:compile"
+                    }
+            }
+        stage('Teste') {
             steps {
                 echo 'Teste...'
                 sh '/opt/maven/bin/mvn test'
             }
         }
-        stage('Install') {
+        stage('Instalação') {
             steps {
                 echo 'Instalando...'
                 sh '/opt/maven/bin/mvn install'
             }
         }
-        stage('Compilação') {
+        stage('Checando Dependências') {
             steps{
-                echo 'Compilando...'
-                sh "/opt/maven/bin/mvn compiler:compile"
+                sh "/opt/maven/bin/mvn dependency:tree"
             }
-        }
+            } 
         stage('Aceite') {
-            steps {
+                    steps {
                 echo 'Espere o aceite de usuário'
                 input(message: 'Mandar para produção?', ok: 'Sim')
+                    }
+            }
+        stage("Quality Gate") { 
+            steps  {
+                script{
+                    def qualityGate = waitForQualityGate()
+                 if (qualityGate.status != 'OK') {
+                    error "O código não está de acordo com as regras do Sonar: ${qualityGate.status}"
+                 }
+                 else {
+                    echo "Código está de acordo com as regras do Sonar."
+                 }
+                }
+            }
+        }
+        stage('Deploy') {
+            steps{
+                echo 'Deploy...'
+                sh "/opt/maven/bin/mvn clean package"
             }
         }
         stage('Produção') {
@@ -47,26 +71,5 @@ pipeline {
                 echo 'Rodando'
             }
         }
-        stage('Jboss') {
-            steps{
-                //echo 'Deploy...'
-                sh "/opt/maven/bin/mvn dependency:tree"
-        }
-    }   
-        stage('Deploy') {
-            steps{
-                echo 'Deploy...'
-                sh "/opt/maven/bin/mvn deploy"
-        }
     }
-    }
-}
-    stage("Quality Gate") { 
-    def qualityGate = waitForQualityGate() 
-      if (qualityGate.status != 'OK') {
-        error "O código não está de acordo com as regras do Sonar: ${qualityGate.status}"
-      }
-      else {
-          echo "Código está de acordo com as regras do Sonar."
-      }
 }
